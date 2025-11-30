@@ -1,9 +1,9 @@
-Backend/__pycache_/
-Backend/routes/__pycache_/
-Backend/models/__pycache_/
-Backend/config/__pycache_/
-Backend/schemas/__pycache_/
-Backend/utils/__pycache_/
+Backend/__pycache__/
+Backend/routes/__pycache__/
+Backend/models/__pycache__/
+Backend/config/__pycache__/
+Backend/schemas/__pycache__/
+Backend/utils/__pycache__/
 Backend/bin/
 Backend/include/
 Backend/lib/
