@@ -1,0 +1,58 @@
+services:
+
+  backend:
+    build:
+      context: ..
+      dockerfile: Container/Backend/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - productos_network
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_DB=productos_db
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-data-productos-api:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U test -d productos_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - productos_network
+
+  init-db:
+    image: postgres:14
+    depends_on:
+      backend:
+        condition: service_started
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_DB=productos_db
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - ../DataBase/initdb.sql:/initdb.sql:ro
+      - ../DataBase/init-data.sh:/init-data.sh:ro
+    networks:
+      - productos_network
+    command: bash /init-data.sh
+    restart: "no"
+
+volumes:
+  postgres-data-productos-api:
+
+
+networks:
+  productos_network:
+    driver: bridge

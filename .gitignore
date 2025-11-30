@@ -1,0 +1,10 @@
+Backend/__pycache_/
+Backend/routes/__pycache_/
+Backend/models/__pycache_/
+Backend/config/__pycache_/
+Backend/schemas/__pycache_/
+Backend/utils/__pycache_/
+Backend/bin/
+Backend/include/
+Backend/lib/
+Backend/lib64/ 
