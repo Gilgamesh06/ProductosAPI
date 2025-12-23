@@ -1,10 +1,6 @@
-Backend/__pycache__/
-Backend/routes/__pycache__/
-Backend/models/__pycache__/
-Backend/config/__pycache__/
-Backend/schemas/__pycache__/
-Backend/utils/__pycache__/
-Backend/bin/
-Backend/include/
-Backend/lib/
-Backend/lib64/ 
+# Entorno virtual
+.venv/
+.env
+# Caché de Python
+__pycache__/
+**/__pycache__/

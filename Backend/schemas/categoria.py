@@ -11,3 +11,8 @@ class UpdateCategoria(BaseModel):
 class GetCategoria(BaseModel):
     id: int
     nombre: str
+
+class GetCategoriaDelete(BaseModel):
+    id: int
+    nombre: str
+    estado: str

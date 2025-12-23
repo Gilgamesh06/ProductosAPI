@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session 
 from config.db import SessionLocal, engine, get_db
 from models.models import Categoria
-from schemas.categoria import GetCategoria, RegisterCategoria, UpdateCategoria
+from schemas.categoria import GetCategoria, RegisterCategoria, UpdateCategoria, GetCategoriaDelete
 from datetime import datetime
 from utils.enums import Estado
 from utils.pagination import Page  
@@ -92,7 +92,7 @@ async def get_categorias(page: int = 1, size: int = 10, db: Session = Depends(ge
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.delete("/delete/{id}", response_model=GetCategoria)
+@router.delete("/delete/{id}", response_model=GetCategoriaDelete)
 async def delete_categoria(id: int, db: Session = Depends(get_db)):
     try:
         categoria = db.query(Categoria).filter(Categoria.id == id).first()
